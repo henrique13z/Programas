@@ -99,7 +99,7 @@ C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\andro
 C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\android\assets\System.Xml.pdb
 C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\android\assets\Xamarin.Forms.Core.pdb
 C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\android\assets\Xamarin.Forms.Xaml.pdb
-C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\linksrc\Calc.Android.pdb
-C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\linksrc\Calc.dll.mdb
-C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\linksrc\FormsViewGroup.dll.mdb
-C:\Users\henri\source\repos\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\linksrc\Xamarin.Forms.Platform.Android.dll.mdb
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\Calc.Android.csprojAssemblyReference.cache
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\res.flag
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\Calc.Android.dll
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc.Android\obj\Debug\MonoAndroid81\Calc.Android.pdb

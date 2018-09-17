@@ -10,3 +10,11 @@ C:\Users\henri\source\repos\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.Assembl
 C:\Users\henri\source\repos\Calc\Calc\Calc\obj\Debug\netstandard2.0\XamlC.stamp
 C:\Users\henri\source\repos\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.dll
 C:\Users\henri\source\repos\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.pdb
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.csprojAssemblyReference.cache
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.csproj.CoreCompileInputs.cache
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.AssemblyInfoInputs.cache
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.AssemblyInfo.cs
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.dll
+C:\Users\henri\Desktop\Programas\CSharp\Calc\Calc\Calc\obj\Debug\netstandard2.0\Calc.pdb

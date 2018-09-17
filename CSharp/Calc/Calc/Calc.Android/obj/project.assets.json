@@ -786,11 +786,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc.Android\\Calc.Android.csproj",
+      "projectUniqueName": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc.Android\\Calc.Android.csproj",
       "projectName": "Calc.Android",
-      "projectPath": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc.Android\\Calc.Android.csproj",
+      "projectPath": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc.Android\\Calc.Android.csproj",
       "packagesPath": "C:\\Users\\henri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc.Android\\obj\\",
+      "outputPath": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc.Android\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -807,8 +807,8 @@
       "frameworks": {
         "monoandroid81": {
           "projectReferences": {
-            "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc\\Calc.csproj": {
-              "projectPath": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc\\Calc.csproj"
+            "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc\\Calc.csproj": {
+              "projectPath": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc\\Calc.csproj"
             }
           }
         }

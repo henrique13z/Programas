@@ -351,11 +351,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc\\Calc.csproj",
+      "projectUniqueName": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc\\Calc.csproj",
       "projectName": "Calc",
-      "projectPath": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc\\Calc.csproj",
+      "projectPath": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc\\Calc.csproj",
       "packagesPath": "C:\\Users\\henri\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\henri\\source\\repos\\Calc\\Calc\\Calc\\obj\\",
+      "outputPath": "C:\\Users\\henri\\Desktop\\Programas\\CSharp\\Calc\\Calc\\Calc\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
