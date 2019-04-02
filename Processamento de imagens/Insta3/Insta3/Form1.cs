@@ -20,7 +20,6 @@ namespace Insta3
         }
 
         Image imagem;
-        Image tempImagem;
         Boolean Aberto = false;
         
 
@@ -43,9 +42,7 @@ namespace Insta3
             }
             else
             {
-                imagem = tempImagem;
-                pictureBox1.Image = imagem;
-                Aberto = true;
+
             }
         }
         void saveImage()
@@ -73,7 +70,7 @@ namespace Insta3
             }
             else { MessageBox.Show("Nenhuma imagem carregada, carregue a imagem primeiro."); }
         }
-        Image rgb(Image imagem, float red, float green, float blue)
+        void /*Image*/ rgb(Image imagem, float red, float green, float blue)
         {
             float mudaVermelho = red / 255.0f;
             float mudaVerde = green / 255.0f;
@@ -81,41 +78,41 @@ namespace Insta3
             
             if (!Aberto)
             {
-                return imagem;
+                //return imagem;
             }
             else
             {
-                //pega a imagem do pictureBox e salva em uma variavel Image
-                Image image = imagem;
-                // Cria um bitmap do tamanho da nossa imagem armazenada em Image
-                Bitmap bitmapInvertido = new Bitmap(image.Width, image.Height);
-
-                //cria um objeto do tipo atributo da imagem, 
-                //contendo informações de como as cores do bitmap são manipuladas
+                Bitmap image = (Bitmap)imagem;
+                Bitmap bitmapInvertido = new Bitmap(image, image.Width, image.Height);
                 ImageAttributes imageAttributes = new ImageAttributes();
+                Graphics graphics = Graphics.FromImage(bitmapInvertido);
+                Rectangle retangulo = new Rectangle(0, 0, bitmapInvertido.Width, bitmapInvertido.Height);
 
                 ColorMatrix colorMatrixFoto = new ColorMatrix(new float[][]
                 {
-                    new float[] {1+mudaVermelho,  0,  0,  0, 0},        // red scaling factor of 2
-                    new float[] {0,  1+mudaVerde,  0,  0, 0},        // green scaling factor of 1
-                    new float[] {0,  0,  1+mudaAzul,  0, 0},        // blue scaling factor of 1
-                    new float[] {0,  0,  0,  1, 0},        // alpha scaling factor of 1
-                    new float[] {0,  0,  0,  0, 1}      // three translations of 0.2*/
+                    new float[] {1+mudaVermelho,  0,  0,  0, 0},
+                    new float[] {0,  1+mudaVerde,  0,  0, 0},   
+                    new float[] {0,  0,  1+mudaAzul,  0, 0},    
+                    new float[] {0,  0,  0,  1, 0},     
+                    new float[] {0,  0,  0,  0, 1}      
                 });
 
                 imageAttributes.SetColorMatrix(colorMatrixFoto);
-                Graphics graphics = Graphics.FromImage(bitmapInvertido);
-
-                graphics.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributes);
+                graphics.DrawImage(image, retangulo, 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributes);
                 graphics.Dispose();
                 imageAttributes.Dispose();
-                return (Image)bitmapInvertido;
+                pictureBox1.Image = bitmapInvertido;
+                //return (Image)bitmapInvertido;
             }
         }
-        Image brilho(Image imagem, float brilho)
+        void /*Image*/ brilho(Image imagem, float brilho)
         {
-            Bitmap bmap = (Bitmap)imagem;   
+            Image bmap = imagem;   
             ImageAttributes Attributes = new ImageAttributes();
+            Bitmap bitmapInvertido = new Bitmap(bmap, bmap.Width, bmap.Height);
+            Graphics NewGraphics = Graphics.FromImage(bitmapInvertido);
+            Rectangle retangulo = new Rectangle(0, 0, bmap.Width, bmap.Height);
+
             float FinalValue = brilho / 255.0f;
             ColorMatrix colorMatrixFoto = new ColorMatrix(new float[][]
                 {
@@ -127,15 +124,13 @@ namespace Insta3
                 });
 
             Attributes.SetColorMatrix(colorMatrixFoto);
-            Bitmap bitmapInvertido = new Bitmap(bmap.Width, bmap.Height);
-            Graphics NewGraphics = Graphics.FromImage(bitmapInvertido);
-            Rectangle retangulo = new Rectangle(0, 0, bitmapInvertido.Width, bitmapInvertido.Height);
-            NewGraphics.DrawImage(bmap, retangulo, 0, 0, bitmapInvertido.Width, bitmapInvertido.Height, GraphicsUnit.Pixel, Attributes);
+           
+            NewGraphics.DrawImage(bmap, retangulo, 0, 0, bmap.Width, bmap.Height, GraphicsUnit.Pixel, Attributes);
             
             Attributes.Dispose();
             NewGraphics.Dispose();
-            //pictureBox1.Image = bitmapInvertido;
-            return bitmapInvertido;
+            pictureBox1.Image = bitmapInvertido;
+            //return (Image)bitmapInvertido;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -162,38 +157,35 @@ namespace Insta3
         {
 
         }
+        
 
         void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             label1.Text = trackBar1.Value.ToString();
-            pictureBox1.Image = rgb(imagem, trackBar1.Value, 0, 0);
-            tempImagem = pictureBox1.Image;
+            rgb(imagem, trackBar1.Value, 0, 0);
         }
 
         void trackBar2_ValueChanged(object sender, EventArgs e)
         {
             label2.Text = trackBar2.Value.ToString();
-            pictureBox1.Image = rgb(imagem, 0, trackBar2.Value, 0);
-            tempImagem = pictureBox1.Image;
+            rgb(imagem, 0, trackBar2.Value, 0);
         }
 
         void trackBar3_ValueChanged(object sender, EventArgs e)
         {
             label3.Text = trackBar3.Value.ToString();
-            pictureBox1.Image = rgb(imagem, 0, 0, trackBar3.Value);
-            tempImagem = pictureBox1.Image;
+            rgb(imagem, 0, 0, trackBar3.Value);
         }
 
         void trackBar6_Scroll(object sender, EventArgs e)
         {
             label6.Text = trackBar6.Value.ToString();
-            pictureBox1.Image = brilho(imagem, trackBar6.Value);
-            tempImagem = pictureBox1.Image;
+            brilho(imagem, trackBar6.Value);
         }
 
         private void trackBar1_MouseUp(object sender, MouseEventArgs e)
         {
-            reload();
+
         }
     }
 }
