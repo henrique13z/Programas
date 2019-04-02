@@ -20,6 +20,7 @@ namespace Insta3
         }
 
         Image imagem;
+        Image tempImagem;
         Boolean Aberto = false;
         
 
@@ -42,12 +43,11 @@ namespace Insta3
             }
             else
             {
-                imagem = Image.FromFile(openFileDialog1.FileName);
+                imagem = tempImagem;
                 pictureBox1.Image = imagem;
                 Aberto = true;
             }
         }
-
         void saveImage()
         {
             if (Aberto)
@@ -73,25 +73,20 @@ namespace Insta3
             }
             else { MessageBox.Show("Nenhuma imagem carregada, carregue a imagem primeiro."); }
         }
-
-        void filtro2()
+        Image rgb(Image imagem, float red, float green, float blue)
         {
-            label1.Text = trackBar1.Value.ToString();
-            label2.Text = trackBar2.Value.ToString();
-            label3.Text = trackBar3.Value.ToString();
-
-            float mudaVermelho = trackBar1.Value * 0.001f;
-            float mudaVerde = trackBar2.Value * 0.001f;
-            float mudaAzul = trackBar3.Value * 0.001f;
-
+            float mudaVermelho = red / 255.0f;
+            float mudaVerde = green / 255.0f;
+            float mudaAzul = blue / 255.0f;
+            
             if (!Aberto)
             {
-
+                return imagem;
             }
             else
             {
                 //pega a imagem do pictureBox e salva em uma variavel Image
-                Image image = pictureBox1.Image;
+                Image image = imagem;
                 // Cria um bitmap do tamanho da nossa imagem armazenada em Image
                 Bitmap bitmapInvertido = new Bitmap(image.Width, image.Height);
 
@@ -114,10 +109,9 @@ namespace Insta3
                 graphics.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height), 0, 0, image.Width, image.Height, GraphicsUnit.Pixel, imageAttributes);
                 graphics.Dispose();
                 imageAttributes.Dispose();
-                pictureBox1.Image = bitmapInvertido;
+                return (Image)bitmapInvertido;
             }
         }
-
         Image brilho(Image imagem, float brilho)
         {
             Bitmap bmap = (Bitmap)imagem;   
@@ -140,18 +134,8 @@ namespace Insta3
             
             Attributes.Dispose();
             NewGraphics.Dispose();
-            //bitmapInvertido.Dispose();
-
             //pictureBox1.Image = bitmapInvertido;
             return bitmapInvertido;
-        }
-
-        Bitmap bitmap = null;
-        private void trackBar6_Scroll(object sender, EventArgs e)
-        {
-            label6.Text = trackBar6.Value.ToString();
-            //  bitmap = pictureBox1.Image;
-            pictureBox1.Image = brilho(pictureBox1.Image, trackBar6.Value);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -171,28 +155,45 @@ namespace Insta3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            filtro2();
-        }
-
-        private void trackBar1_ValueChanged(object sender, EventArgs e)
-        {
-            filtro2();
-        }
-
-        private void trackBar2_ValueChanged(object sender, EventArgs e)
-        {
-            filtro2();
-        }
-
-        private void trackBar3_ValueChanged(object sender, EventArgs e)
-        {
-            filtro2();
+            
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-       
+
         }
 
+        void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            label1.Text = trackBar1.Value.ToString();
+            pictureBox1.Image = rgb(imagem, trackBar1.Value, 0, 0);
+            tempImagem = pictureBox1.Image;
+        }
+
+        void trackBar2_ValueChanged(object sender, EventArgs e)
+        {
+            label2.Text = trackBar2.Value.ToString();
+            pictureBox1.Image = rgb(imagem, 0, trackBar2.Value, 0);
+            tempImagem = pictureBox1.Image;
+        }
+
+        void trackBar3_ValueChanged(object sender, EventArgs e)
+        {
+            label3.Text = trackBar3.Value.ToString();
+            pictureBox1.Image = rgb(imagem, 0, 0, trackBar3.Value);
+            tempImagem = pictureBox1.Image;
+        }
+
+        void trackBar6_Scroll(object sender, EventArgs e)
+        {
+            label6.Text = trackBar6.Value.ToString();
+            pictureBox1.Image = brilho(imagem, trackBar6.Value);
+            tempImagem = pictureBox1.Image;
+        }
+
+        private void trackBar1_MouseUp(object sender, MouseEventArgs e)
+        {
+            reload();
+        }
     }
 }

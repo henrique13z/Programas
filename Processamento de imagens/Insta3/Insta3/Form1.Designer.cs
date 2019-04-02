@@ -181,6 +181,7 @@
             this.trackBar1.TabIndex = 10;
             this.trackBar1.TickFrequency = 10;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
+            this.trackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.trackBar1_MouseUp);
             // 
             // trackBar2
             // 
