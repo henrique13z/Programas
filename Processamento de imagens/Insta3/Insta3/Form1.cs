@@ -120,8 +120,7 @@ namespace Insta3
 
         Image brilho(Image imagem, float brilho)
         {
-            //Image image = pictureBox1.Image;
-            Bitmap bitmapInvertido = new Bitmap(imagem.Width, imagem.Height);
+            Bitmap bmap = (Bitmap)imagem;   
             ImageAttributes Attributes = new ImageAttributes();
             float FinalValue = brilho / 255.0f;
             ColorMatrix colorMatrixFoto = new ColorMatrix(new float[][]
@@ -130,26 +129,28 @@ namespace Insta3
                     new float[] {0, 1, 0, 0, 0},
                     new float[] {0, 0, 1, 0, 0},
                     new float[] {0, 0, 0, 1, 0},
-                    new float[] { FinalValue, FinalValue, FinalValue, FinalValue, 1}
+                    new float[] {FinalValue, FinalValue, FinalValue, 0, 1}
                 });
 
             Attributes.SetColorMatrix(colorMatrixFoto);
+            Bitmap bitmapInvertido = new Bitmap(bmap.Width, bmap.Height);
             Graphics NewGraphics = Graphics.FromImage(bitmapInvertido);
             Rectangle retangulo = new Rectangle(0, 0, bitmapInvertido.Width, bitmapInvertido.Height);
+            NewGraphics.DrawImage(bmap, retangulo, 0, 0, bitmapInvertido.Width, bitmapInvertido.Height, GraphicsUnit.Pixel, Attributes);
             
-            NewGraphics.DrawImage(bitmapInvertido, retangulo, 0, 0, bitmapInvertido.Width, bitmapInvertido.Height, GraphicsUnit.Pixel, Attributes);
-            NewGraphics.DrawImage(imagem, retangulo);
             Attributes.Dispose();
             NewGraphics.Dispose();
             //bitmapInvertido.Dispose();
 
             //pictureBox1.Image = bitmapInvertido;
-            return (Image)bitmapInvertido;
+            return bitmapInvertido;
         }
-        
+
+        Bitmap bitmap = null;
         private void trackBar6_Scroll(object sender, EventArgs e)
         {
             label6.Text = trackBar6.Value.ToString();
+            //  bitmap = pictureBox1.Image;
             pictureBox1.Image = brilho(pictureBox1.Image, trackBar6.Value);
         }
 
