@@ -19,17 +19,18 @@ namespace Insta3
             InitializeComponent();
         }
 
-        Image imagem;
+        Image imagemOriginal;
+        Image imagemEditada;
         Boolean Aberto = false;
-        
+
 
         void openImage()
         {
             DialogResult dialogResult = openFileDialog1.ShowDialog();
-            if(dialogResult == DialogResult.OK)
+            if (dialogResult == DialogResult.OK)
             {
-                imagem = Image.FromFile(openFileDialog1.FileName);
-                pictureBox1.Image = imagem;
+                imagemOriginal = Image.FromFile(openFileDialog1.FileName);
+                pictureBox1.Image = imagemOriginal;
                 Aberto = true;
             }
         }
@@ -38,11 +39,16 @@ namespace Insta3
         {
             if (!Aberto)
             {
-
+                // MessageBox.Show("Open an Image then apply changes");
             }
             else
             {
-
+                if (Aberto)
+                {
+                    imagemEditada = pictureBox1.Image;
+                    pictureBox1.Image = imagemEditada;
+                    Aberto = true;
+                }
             }
         }
         void saveImage()
@@ -75,7 +81,8 @@ namespace Insta3
             float mudaVermelho = red / 255.0f;
             float mudaVerde = green / 255.0f;
             float mudaAzul = blue / 255.0f;
-            
+
+            //reload();
             if (!Aberto)
             {
                 //return imagem;
@@ -91,10 +98,10 @@ namespace Insta3
                 ColorMatrix colorMatrixFoto = new ColorMatrix(new float[][]
                 {
                     new float[] {1+mudaVermelho,  0,  0,  0, 0},
-                    new float[] {0,  1+mudaVerde,  0,  0, 0},   
-                    new float[] {0,  0,  1+mudaAzul,  0, 0},    
-                    new float[] {0,  0,  0,  1, 0},     
-                    new float[] {0,  0,  0,  0, 1}      
+                    new float[] {0,  1+mudaVerde,  0,  0, 0},
+                    new float[] {0,  0,  1+mudaAzul,  0, 0},
+                    new float[] {0,  0,  0,  1, 0},
+                    new float[] {0,  0,  0,  0, 1}
                 });
 
                 imageAttributes.SetColorMatrix(colorMatrixFoto);
@@ -102,12 +109,14 @@ namespace Insta3
                 graphics.Dispose();
                 imageAttributes.Dispose();
                 pictureBox1.Image = bitmapInvertido;
+                imagemEditada = pictureBox1.Image;
                 //return (Image)bitmapInvertido;
             }
         }
         void /*Image*/ brilho(Image imagem, float brilho)
         {
-            Image bmap = imagem;   
+            //reload();
+            Image bmap = imagem;
             ImageAttributes Attributes = new ImageAttributes();
             Bitmap bitmapInvertido = new Bitmap(bmap, bmap.Width, bmap.Height);
             Graphics NewGraphics = Graphics.FromImage(bitmapInvertido);
@@ -124,14 +133,15 @@ namespace Insta3
                 });
 
             Attributes.SetColorMatrix(colorMatrixFoto);
-           
+
             NewGraphics.DrawImage(bmap, retangulo, 0, 0, bmap.Width, bmap.Height, GraphicsUnit.Pixel, Attributes);
-            
-            Attributes.Dispose();
+          
             NewGraphics.Dispose();
             pictureBox1.Image = bitmapInvertido;
-            //return (Image)bitmapInvertido;
+            imagemEditada = pictureBox1.Image;
         }
+
+        
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -150,37 +160,41 @@ namespace Insta3
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
 
         }
-        
+
 
         void trackBar1_ValueChanged(object sender, EventArgs e)
         {
             label1.Text = trackBar1.Value.ToString();
-            rgb(imagem, trackBar1.Value, 0, 0);
+            rgb(imagemOriginal, 0, trackBar1.Value, 0);
+            
         }
 
         void trackBar2_ValueChanged(object sender, EventArgs e)
         {
             label2.Text = trackBar2.Value.ToString();
-            rgb(imagem, 0, trackBar2.Value, 0);
+            rgb(imagemOriginal, 0, trackBar2.Value, 0);
+           
+            
         }
 
         void trackBar3_ValueChanged(object sender, EventArgs e)
         {
             label3.Text = trackBar3.Value.ToString();
-            rgb(imagem, 0, 0, trackBar3.Value);
+                rgb(imagemOriginal, 0, trackBar3.Value, 0);
+           
         }
 
         void trackBar6_Scroll(object sender, EventArgs e)
         {
             label6.Text = trackBar6.Value.ToString();
-            brilho(imagem, trackBar6.Value);
+            brilho(imagemOriginal, trackBar6.Value);
         }
 
         private void trackBar1_MouseUp(object sender, MouseEventArgs e)
